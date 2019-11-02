@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @lion.name %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @lion.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @lion.content %>
+</p>
+<p>
+  <strong>Image:</strong>
+  <% if @lion.image.attached? %>
+    <%= image_tag(@lion.image, size:'200x200')%>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_lion_path(@lion) %> |
+<%= link_to 'Back', lions_path %>
+
+<%= form_for Comment.new, url:lion_comments_path(@lion.id), method:"POST" do |form| %>
+  <div class="field">
+    <%= form.label :user %>
+    <%= form.text_field :user %>
+  </div>
+
+  <div class="field">
+    <%= form.label :memo %>
+    <%= form.text_field :memo %>
+  </div>
+  
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+  
